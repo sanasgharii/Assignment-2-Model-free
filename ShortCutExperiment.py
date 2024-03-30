@@ -95,7 +95,6 @@ def run_repetitions(alpha=0.1, epsilon=0.1, n_episodes=1000, n_rep=100):
             total_reward += episode_reward
             cumulative_rewards[episode] += episode_reward
     
-    # Calculate and return the average cumulative rewards for this alpha
     average_cumulative_rewards = cumulative_rewards / n_rep
     return average_cumulative_rewards
 
@@ -104,7 +103,6 @@ def plot_different_alphas(alphas, epsilon=0.1, n_episodes=1000, n_rep=100):
     
     for alpha in alphas:
         avg_rewards = run_repetitions(alpha, epsilon, n_episodes, n_rep)
-        # Use dynamic smoothing here
         smoothed_rewards = dynamic_smooth(avg_rewards, start_window=9, poly=3)
         plt.plot(smoothed_rewards, label=f'α = {alpha}')
         
